@@ -26,17 +26,28 @@
 		$(document).ready(function() {       
 			$('#button').click(function(){
 				//alert('click success');
-                			var name=$('#name').val();
+                			//var name=$('#name').val();
+              				 
+              				 var name=$("#name").serialize();
+
               				 console.log(name);
+              				 $.ajax({
+              				 	type:"Post",
+              				 	url:"/user",
+              				 	data:name
+              				 	}).done(function(resdata){
+              				 		$('body').append("<br />"+resdata);
+
+              				 	});
                 //console.log($('#name'));
                 //console.log($('#name').attr("value"));
-				$.get("/user?name="+name,function(data,status){
+				/*$.get("/user?name="+name,function(data,status){
    					if(status == 'success'){
    						console.log(status);
 					               console.log(data);
 					               $('p').html(data);
 					}
-  });
+  });*/
 			
 
 			})
@@ -47,8 +58,10 @@
 </head>
 
 <body>
-<input type='text' id="name" value="default value"/>
+<form>
+<input type='text' id="name" value="default value" name="name"/>
 <input type='button' value="input" id="button"/>
+</form>
 <p></p>
 </body>
 
