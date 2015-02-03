@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Simple Interact</title>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.1.min.js"></script>
+</head>
+<body>
+    <input id='message' class="email" type="text" value="hefy"/>
+    <input id="btn1" type='button'  value="click" />
+</body>
+<script type="text/javascript">
+    $("#btn1").bind('click',function(e){
+        var message = $(".email").val();
+        $.post("/",
+            {"message":message},
+            function(data, textStauts){
+            alert("Done, response is "+data); 
+        });
+    });
+</script>
+
